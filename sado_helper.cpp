@@ -5,6 +5,7 @@
 #include <boost/range/algorithm/sort.hpp>
 #include <boost/range/algorithm/unique_copy.hpp>
 #include <gsl/gsl>
+#include <string>
 #include <cmath>
 #include <fstream>
 #include <sstream>

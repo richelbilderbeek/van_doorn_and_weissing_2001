@@ -1,4 +1,5 @@
 #include "sado_next_generation_method.h"
+#include <cassert>
 #include <stdexcept>
 
 std::vector<sado::next_generation_method> sado::collect_all_next_generation_methods() noexcept
@@ -26,8 +27,10 @@ std::string sado::to_str(const next_generation_method e) noexcept
     return "overlapping";
   if (e == next_generation_method::seperate)
     return "seperate";
-  throw std::invalid_argument(
-    "cannot convert next_generation_method to string");
+  //throw std::invalid_argument(
+  //  "cannot convert next_generation_method to string");
+  assert(!"Should not get heer");
+  return "";
 }
 
 std::ostream& sado::operator<<(std::ostream& os, const next_generation_method e) noexcept
