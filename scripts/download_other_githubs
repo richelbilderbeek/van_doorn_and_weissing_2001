@@ -17,3 +17,7 @@ fi
 if [ ! -d RibiLibraries ]; then
   git clone -b develop https://github.com/richelbilderbeek/RibiLibraries
 fi
+
+if [ ! -d GSL ]; then
+  git clone https://github.com/microsoft/GSL
+fi
