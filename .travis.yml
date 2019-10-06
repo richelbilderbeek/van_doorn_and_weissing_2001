@@ -46,7 +46,7 @@ script:
   # Call OCLint
   - ./scripts/do_oclint | true
   # Get code coverage
-  - ./scripts/get_code_cov.sh >/dev/null
+  - ./scripts/get_code_cov >/dev/null
   - codecov >/dev/null
   # Check dead links
   - rm .travis.yml
