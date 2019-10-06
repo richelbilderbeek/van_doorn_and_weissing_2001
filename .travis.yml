@@ -23,7 +23,7 @@ install:
   - sudo npm install -g markdown-link-check
   # R and ape
   - sudo apt install -qq r-base
-  - Rscript -e 'install.packages("ape")'
+  - sudo Rscript -e 'install.packages("ape")'
   # OCLint
   - ./scripts/install_oclint
 
