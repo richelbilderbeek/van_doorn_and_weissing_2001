@@ -22,8 +22,7 @@ install:
   - npm config set strict-ssl false
   - sudo npm install -g markdown-link-check
   # R and ape
-  - sudo apt install -qq r-base
-  - sudo Rscript -e 'install.packages("ape")'
+  - sudo apt install -qq r-base r-cran-ape
   # OCLint
   - ./scripts/install_oclint
 
