@@ -22,7 +22,7 @@ install:
   - npm config set strict-ssl false
   - sudo npm install -g markdown-link-check
   # OCLint
-  - ./scripts/install_oclint.sh
+  - ./scripts/install_oclint
 
 services:
  - xvfb
