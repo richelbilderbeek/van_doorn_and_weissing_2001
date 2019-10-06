@@ -22,7 +22,7 @@ install:
   - npm config set strict-ssl false
   - sudo npm install -g markdown-link-check
   # R and ape
-  - sudo apt install -qq r-base r-cran-ape
+  - sudo apt install -qq r-base r-cran-ape libgfortran-9-dev
   - sudo Rscript -e 'install.packages("PBD")'
   # OCLint
   - ./scripts/install_oclint
