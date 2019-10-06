@@ -14,6 +14,6 @@ if [ ! -d gausser ]; then
   git clone -b develop https://github.com/richelbilderbeek/gausser
 fi
 
-if [ ! -d gausser ]; then
+if [ ! -d RibiLibraries ]; then
   git clone -b develop https://github.com/richelbilderbeek/RibiLibraries
 fi

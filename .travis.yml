@@ -28,7 +28,7 @@ services:
  - xvfb
 
 script: 
-  - ./download_other_githubs.sh
+  - ./scipts/download_other_githubs
   - qmake -qt=qt5 sado_test.pro
   - make --silent
   - ./sado_test
