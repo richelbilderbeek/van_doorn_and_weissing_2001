@@ -23,6 +23,7 @@ install:
   - sudo npm install -g markdown-link-check
   # R and ape
   - sudo apt install -qq r-base r-cran-ape
+  - sudo Rscript 'install.packages("PBD")'
   # OCLint
   - ./scripts/install_oclint
 
