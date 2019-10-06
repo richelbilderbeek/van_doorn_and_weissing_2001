@@ -1,5 +1,6 @@
 #include "sado_gausser_implementation.h"
 
+#include <cassert>
 #include <stdexcept>
 
 sado::gausser_implementation
@@ -17,10 +18,8 @@ std::string sado::to_str(const gausser_implementation g) noexcept
 {
   if (g == gausser_implementation::lut)
     return "lut";
-  if (g == gausser_implementation::raw)
-    return "raw";
-  throw std::invalid_argument(
-      "cannot convert gausser_implementation to string");
+  assert(g == gausser_implementation::raw);
+  return "raw";
 }
 
 std::ostream &sado::

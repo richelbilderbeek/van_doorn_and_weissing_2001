@@ -1,5 +1,6 @@
 #include "sado_erasure_method.h"
 
+#include <cassert>
 #include <stdexcept>
 
 std::vector<sado::erasure_method> sado::collect_all_erasure_methods() noexcept
@@ -24,9 +25,8 @@ std::string sado::to_str(const erasure_method m) noexcept
 {
   if (m == erasure_method::erase)
     return "erase";
-  if (m == erasure_method::swap)
-    return "swap";
-  throw std::invalid_argument("cannot convert erasure to string");
+  assert(m == erasure_method::swap);
+  return "swap";
 }
 
 std::ostream& sado::operator<<(std::ostream& os, const erasure_method m) noexcept

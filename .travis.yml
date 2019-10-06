@@ -1,81 +1,55 @@
 language: cpp
+dist: bionic
 compiler: gcc
-
-addons:
-  # Boost
-  apt: 
-    packages: libboost-all-dev
-
-before_install:
-  # C++14
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
+cache: packages
 
 install: 
-  # C++14
-  - sudo apt-get install -qq g++-6
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-  # Qt5
-  - sudo apt-get install -qq libqt5webkit5-dev qtdeclarative5-dev libqt5svg5*
-  - export QMAKE=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
-  # Qt5 SVG
-  - sudo apt-get install libqt5svg5-dev
+  - sudo apt update -qq
+  # Boost
+  - sudo apt install -qq libboost-all-dev
+  # Qt
+  - sudo apt install -qq qt5-qmake qt5-default
+  # Qwt
+  - sudo apt install -qq libqwt-qt5-dev
   # cppcheck
-  - sudo apt-get install -qq cppcheck
+  - sudo apt install -qq cppcheck 
+  # sloccount
+  - sudo apt install -qq sloccount 
   # Codecov
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-6 90
   - sudo pip install codecov
+  # Check dead links
+  - sudo apt-get install -qq npm
+  - npm config set strict-ssl false
+  - sudo npm install -g markdown-link-check
   # OCLint
-  - ./install_oclint
-  # valgrind, for helgrind and memcheck
-  - sudo apt-get install -qq valgrind
-  # SLOCcount
-  - sudo apt-get install sloccount
-  # Get my folder
-  - my_github=${PWD##*/}  
-  # shunit2
-  - cd ..; git clone https://github.com/kward/shunit2.git; cd $my_github
-  # GSL and other GitHubs
-  - my_github=${PWD##*/}  
-  - cd ..
-  - git clone https://github.com/Microsoft/GSL
-  - git clone -b develop https://github.com/richelbilderbeek/boost_graph_cookbook_1
-  - git clone -b develop https://github.com/richelbilderbeek/gausser
-  - git clone -b develop https://github.com/richelbilderbeek/SurfacePlotter
-  - git clone -b develop https://github.com/richelbilderbeek/RibiLibraries
-  - cd $my_github
-  #- ./download_other_githubs
+  - ./install_oclint.sh
 
-# Start virtual X server, from https://docs.travis-ci.com/user/gui-and-headless-browsers/
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+services:
+ - xvfb
 
 script: 
-  - ./build_other_githubs
-  # Build console test
+  - ./download_other_githubs.sh
   - qmake -qt=qt5 sado_test.pro
-  - make -s debug
+  - make --silent
   - ./sado_test
-  # Build and run desktop test
   - qmake -qt=qt5 sado_gui.pro
-  - make -s debug
-  - ./sado_gui
+  - make --silent
+  - ./sado_gui &
+  - sleep 10
+  - sudo killall -9 sado_gui
   # cppcheck, be mild
   - cppcheck --quiet --error-exitcode=0 . 
   #- cppcheck --quiet --error-exitcode=1 . 
   # Call OCLint
-  - ./do_oclint
+  - ./do_oclint | true
   # Get code coverage
-  - ./get_code_cov >/dev/null
+  - ./get_code_cov.sh >/dev/null
   - codecov >/dev/null
-  # Get my folder
-  - my_github=${PWD##*/}  
+  # Check dead links
+  - rm .travis.yml
+  - ./scripts/check_dead_links || true
   # SLOCcount
-  #   remove OCLint otherwise it will be counted as well
-  - rm -rf oclint-0.10.3
-  - cd ..; sloccount --overhead 1 --personcost 22614 van_doorn_and_weissing_2001; cd van_doorn_and_weissing_2001
+  - cd ..; sloccount --overhead 1 --personcost 22614 $my_github; cd $my_github
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

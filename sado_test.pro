@@ -1,4 +1,4 @@
-include(any_test_qtcore.pri)
+#include(any_test_qtcore.pri)
 include(sado.pri)
 include(sado_test.pri)
 include(../gausser/gausser.pri)
@@ -12,3 +12,6 @@ LIBS += -lboost_graph
 INCLUDEPATH += ../boost_graph_cookbook_1/boost_graph_cookbook_1
 include(../boost_graph_cookbook_1/boost_graph_cookbook_1/boost_graph_cookbook_1_helper.pri)
 include(../boost_graph_cookbook_1/boost_graph_cookbook_1/boost_graph_cookbook_1_no_properties.pri)
+
+# Boost.Test
+LIBS += -lboost_unit_test_framework

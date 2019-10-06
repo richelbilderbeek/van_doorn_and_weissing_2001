@@ -12,8 +12,20 @@ using namespace sado;
 BOOST_AUTO_TEST_CASE(sado_is_newick)
 {
   BOOST_CHECK(!is_newick("nonsense"));
-  BOOST_CHECK(!is_newick("((:1,:1));"));
-  BOOST_CHECK(!is_newick("((:2,(:1,:1):1));"));
+
+  // Is a tree according to ape. Within R, do:
+  //
+  // > ape::read.tree(text = "((:1,:1));")
+  //
+  // Phylogenetic tree with 2 tips and 2 internal nodes.
+  //
+  // Tip labels:
+  // [1] "" ""
+  //
+  //Rooted; includes branch lengths.
+  //
+  BOOST_CHECK( is_newick("((:1,:1));")); //According to ape
+  BOOST_CHECK( is_newick("((:2,(:1,:1):1));")); //According to ape
 
   BOOST_CHECK( is_newick("(:1,:1):1;")); //According to ape
   BOOST_CHECK( is_newick("(:0.1,:0.2,(:0.3,:0.4):0.5);"));
