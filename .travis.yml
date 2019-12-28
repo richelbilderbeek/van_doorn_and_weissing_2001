@@ -27,7 +27,7 @@ install:
   - sudo npm install -g markdown-link-check
   # R and ape
   - sudo apt install -qq r-base r-cran-ape r-cran-phangorn r-cran-phytools r-cran-desolve libgfortran-8-dev liblapack-dev libblas-dev
-  - sudo Rscript -e 'install.packages("PBD")'
+  - sudo Rscript -e 'install.packages(c("DDD", "PBD"))'
   # OCLint
   - ./scripts/install_oclint
 
