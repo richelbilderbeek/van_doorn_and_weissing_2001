@@ -18,10 +18,7 @@
 #include "sado_newick.h"
 #include "sado_likelihood.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
 #include "ui_sado_qtdialog.h"
-#pragma GCC diagnostic pop
 
 const int row_b{0};
 const int row_c{row_b + 1};

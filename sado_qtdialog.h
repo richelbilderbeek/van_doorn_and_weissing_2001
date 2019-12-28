@@ -3,13 +3,10 @@
 
 #include <array>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
 #include "sado_fwd.h"
 #include "sado_parameters.h"
 #include <QDialog>
 //#include "sado_results.h"
-#pragma GCC diagnostic pop
 
 struct QwtPlot;
 struct QwtPlotCurve;
