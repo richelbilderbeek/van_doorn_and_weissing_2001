@@ -53,13 +53,13 @@ script:
   # Call OCLint
   - ./scripts/do_oclint | true
   # Get code coverage
-  - ./scripts/get_code_cov >/dev/null
-  - codecov >/dev/null
+  #- ./scripts/get_code_cov >/dev/null
+  #- codecov >/dev/null
   # Check dead links
-  - rm .travis.yml
-  - ./scripts/check_dead_links || true
+  #- rm .travis.yml
+  #- ./scripts/check_dead_links || true
   # SLOCcount
-  - cd ..; sloccount --overhead 1 --personcost 22614 $my_github; cd $my_github
+  #- cd ..; sloccount --overhead 1 --personcost 22614 $my_github; cd $my_github
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
