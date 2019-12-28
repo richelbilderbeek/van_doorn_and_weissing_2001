@@ -26,7 +26,7 @@ install:
   - npm config set strict-ssl false
   - sudo npm install -g markdown-link-check
   # R and ape
-  - sudo apt install -qq r-base r-cran-ape r-cran-phangorn r-cran-phytools libgfortran-8-dev 
+  - sudo apt install -qq r-base r-cran-ape r-cran-phangorn r-cran-phytools r-cran-desolve libgfortran-8-dev 
   - sudo Rscript -e 'install.packages("PBD")'
   # OCLint
   - ./scripts/install_oclint
